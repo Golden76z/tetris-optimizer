@@ -52,9 +52,9 @@ func backtrack(grid [][]string, tetrominos []Tetromino, index int) bool {
 func canPlace(grid [][]string, tetromino Tetromino, pos Point) bool {
 	for y := 0; y < len(tetromino); y++ {
 		for x := 0; x < len(tetromino[y]); x++ {
-			if tetromino[y][x] != "⬛" && tetromino[y][x] != "." {
+			if tetromino[y][x] != "  " && tetromino[y][x] != "." {
 				gridY, gridX := pos.Y+y, pos.X+x
-				if gridY >= len(grid) || gridX >= len(grid) || (grid[gridY][gridX] != "." && grid[gridY][gridX] != "⬛") {
+				if gridY >= len(grid) || gridX >= len(grid) || (grid[gridY][gridX] != "." && grid[gridY][gridX] != "  ") {
 					return false
 				}
 			}
@@ -67,7 +67,7 @@ func canPlace(grid [][]string, tetromino Tetromino, pos Point) bool {
 func place(grid [][]string, tetromino Tetromino, pos Point) {
 	for y := 0; y < len(tetromino); y++ {
 		for x := 0; x < len(tetromino[y]); x++ {
-			if tetromino[y][x] != "⬛" && tetromino[y][x] != "." {
+			if tetromino[y][x] != "  " && tetromino[y][x] != "." {
 				grid[pos.Y+y][pos.X+x] = tetromino[y][x]
 			}
 		}
@@ -78,8 +78,8 @@ func place(grid [][]string, tetromino Tetromino, pos Point) {
 func remove(grid [][]string, tetromino Tetromino, pos Point) {
 	for y := 0; y < len(tetromino); y++ {
 		for x := 0; x < len(tetromino[y]); x++ {
-			if tetromino[y][x] != "⬛" && tetromino[y][x] != "." {
-				grid[pos.Y+y][pos.X+x] = "⬛"
+			if tetromino[y][x] != "  " && tetromino[y][x] != "." {
+				grid[pos.Y+y][pos.X+x] = "  "
 			}
 		}
 	}
@@ -91,18 +91,18 @@ func CreateSquare(size int) [][]string {
 	for i := range grid {
 		grid[i] = make([]string, size)
 		for j := range grid[i] {
-			grid[i][j] = "⬛"
+			grid[i][j] = "  "
 		}
 	}
 	return grid
 }
 
-// FormatResult replaces "." with "⬛" in the result grid
+// FormatResult replaces "." with "  " in the result grid
 func FormatResult(grid [][]string) [][]string {
 	for i := range grid {
 		for j := range grid[i] {
 			if grid[i][j] == "." {
-				grid[i][j] = "⬛"
+				grid[i][j] = "  "
 			}
 		}
 	}

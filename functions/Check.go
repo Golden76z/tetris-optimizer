@@ -6,6 +6,7 @@ import (
 	"os"
 )
 
+// ? Function that will check if the file is valid or not
 func Check(s string) (int, []string, int) {
 	//Variable that will check for errors
 	errorcheck := 0

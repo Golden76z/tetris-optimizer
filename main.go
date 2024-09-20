@@ -8,7 +8,7 @@ import (
 
 func main() {
 	t := functions.NewTimer()
-	// Start the timer
+	//Start the timer
 	t.Start()
 
 	//Checking arguments length
@@ -16,8 +16,12 @@ func main() {
 		fmt.Println("Usage: go run main.go <filename>")
 		return
 	}
+
+	//Storing our filename in a variable
 	filename := os.Args[1]
-	multitetroarray := [][][]string{}
+
+	//Variable that will store all our tetrominos
+	var multitetroarray [][][]string
 
 	//Checking if the tetrominos are valid or not
 	tetronumber, tetroarray, errorcheck := functions.Check(filename)
@@ -30,7 +34,7 @@ func main() {
 	multitetroarray = functions.Chunk(tetroarray)
 	multitetroarray = functions.CheckLines(multitetroarray)
 
-	// Erase the useless lines
+	//Getting rid of the empty colums to the left and right
 	for i := 0; i < 4; i++ {
 		multitetroarray = functions.CheckColumnsLeft(multitetroarray)
 		multitetroarray = functions.CheckColumnsRight(multitetroarray)
@@ -38,28 +42,39 @@ func main() {
 
 	//Replacing all the # by colors, each color is unique
 	multitetroarray = functions.ReplaceWithColor(multitetroarray)
-	//Printing all my tetrominos
-	// for i := 0; i < len(multitetroarray); i++ {
-	// 	for j := 0; j < len(multitetroarray[i]); j++ {
-	// 		fmt.Println(multitetroarray[i][j])
-	// 	}
-	// }
 
-	// Get the minimum square size
+	// Printing all my tetrominos
+	println("<--------------------------------------------------->")
+	for i := 0; i < len(multitetroarray); i++ {
+		for j := 0; j < len(multitetroarray[i]); j++ {
+			for l := 0; l < len(multitetroarray[i][j]); l++ {
+				if multitetroarray[i][j][l] != "⬛" {
+					fmt.Print(multitetroarray[i][j][l])
+				} else {
+					fmt.Print("  ")
+				}
+			}
+			fmt.Println()
+		}
+		fmt.Println()
+	}
+	println("<--------------------------------------------------->")
+
+	//Get the minimum square size
 	minSquareSize := functions.SquareSize(tetronumber)
 	fmt.Printf("              Minimum square size: %d\n", minSquareSize)
 	println("<--------------------------------------------------->")
 
-	// Convert multitetroarray to []functions.Tetromino
+	//Convert multitetroarray to []functions.Tetromino
 	var tetrominos []functions.Tetromino
 	for _, tetro := range multitetroarray {
 		tetrominos = append(tetrominos, functions.Tetromino(tetro))
 	}
 
-	// Fit the tetrominos into the smallest possible square, starting from the minimum size
+	//Fit the tetrominos into the smallest possible square, starting from the minimum size
 	result := functions.FitTetrominos(tetrominos, minSquareSize)
 
-	// Print the result
+	//Print the result
 	if result != nil {
 		formattedResult := functions.FormatResult(result)
 		for i := 0; i < len(formattedResult); i++ {
@@ -72,9 +87,9 @@ func main() {
 		fmt.Println("No solution found")
 	}
 
-	// Stop the timer and get the elapsed time
-	elapsed := t.ElapsedSeconds()
 	println("<--------------------------------------------------->")
+	//Stop the timer and get the elapsed time
+	elapsed := t.ElapsedSeconds()
 	fmt.Printf("          Program took %.2f seconds to finish\n", elapsed)
 	fmt.Println()
 }
