@@ -31,14 +31,44 @@ func main() {
 		return
 	}
 	fmt.Printf("          Number of valid tetrominos: %d\n", tetronumber)
+
+	//Formatting my array into a 3 dimensionnal array where each tetromino is a 2 dimensionnal array
 	multitetroarray = functions.Chunk(tetroarray)
+
+	// ? Showing the Chunk modifications
+	// for i := 0; i < len(multitetroarray); i++ {
+	// 	for j := 0; j < len(multitetroarray[i]); j++ {
+	// 		fmt.Println(multitetroarray[i][j])
+	// 	}
+	// 	fmt.Println("-------------------")
+	// }
+
+	//Getting rid of the useless lines
 	multitetroarray = functions.CheckLines(multitetroarray)
+
+	// ? Print the lines removal
+	// fmt.Println("lines")
+	// for i := 0; i < len(multitetroarray); i++ {
+	// 	for j := 0; j < len(multitetroarray[i]); j++ {
+	// 		fmt.Println(multitetroarray[i][j])
+	// 	}
+	// 	fmt.Println("-------------------")
+	// }
 
 	//Getting rid of the empty colums to the left and right
 	for i := 0; i < 4; i++ {
 		multitetroarray = functions.CheckColumnsLeft(multitetroarray)
 		multitetroarray = functions.CheckColumnsRight(multitetroarray)
 	}
+
+	// ? Print the columns removal
+	// fmt.Println("column")
+	// for i := 0; i < len(multitetroarray); i++ {
+	// 	for j := 0; j < len(multitetroarray[i]); j++ {
+	// 		fmt.Println(multitetroarray[i][j])
+	// 	}
+	// 	fmt.Println("-------------------")
+	// }
 
 	//Replacing all the # by colors, each color is unique
 	multitetroarray = functions.ReplaceWithColor(multitetroarray)
@@ -86,6 +116,11 @@ func main() {
 	} else {
 		fmt.Println("No solution found")
 	}
+
+	// ? Showing the number of remove
+	// println("<--------------------------------------------------->")
+	// fmt.Printf("     number of remove: functions.Count")
+	// fmt.Println(functions.Count)
 
 	println("<--------------------------------------------------->")
 	//Stop the timer and get the elapsed time

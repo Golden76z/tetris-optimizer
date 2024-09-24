@@ -4,18 +4,18 @@ package functions
 func ReplaceWithColor(tab [][][]string) [][][]string {
 	//Array that will store all our color values
 	colors := []string{
-		"🟨", // Yellow
-		"🟧", // Orange
-		"🟥", // Red
-		"🟪", // Purple
-		"🟦", // Blue
-		"🟩", // Green
-		"🟫", // Brown
-		"🈹", // Smiley1
-		"🈴", // Smiley2
-		"🈯", // Smiley3
-		"🈳", // Smiley4
-		"🆗", // White
+		"🟨",
+		"🟧",
+		"🟥",
+		"🟪",
+		"🟦",
+		"🟩",
+		"🟫",
+		"🈹",
+		"🈴",
+		"🈯",
+		"🈳",
+		"🆗",
 		// "⬛",
 	}
 	finaltab := [][][]string{}

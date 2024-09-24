@@ -78,7 +78,9 @@ So the minimum square is 7 by 7 because 7 x 7 = 49.
 
 ## Solver
 
-We then use the backtracking Algorithm to find the best solution to fit all the tetrominos of the file into the minimum square possible.
+We then use the backtracking Algorithm to find the best solution to fit all the tetrominos of the file into the minimum square possible.  
+It place a tetromino if it can, otherwise it goes to the next tetromino until he finds the solution.  
+If no solutions were found on the current square, we increase the size of the square and try again.  
 
  ### MIT License
 
